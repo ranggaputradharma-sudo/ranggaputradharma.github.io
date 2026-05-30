@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rangga Pamungkas Putradharma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#060C14;
+  --ink2:#091220;
+  --ink3:#0D1A2E;
+  --paper:#E8F8FA;
+  --paper2:#D0F0F5;
+  --gold:#00C8D8;
+  --gold2:#00DCF0;
+  --gold3:#80EEF8;
+  --gold-light:rgba(0,200,216,0.10);
+  --teal:#007A8A;
+  --teal2:#009AB0;
+  --red:#8B2020;
+  --text-primary:#E8F4F8;
+  --text-secondary:#7ABFCC;
+  --text-muted:#3A6875;
+  --line:rgba(0,200,216,0.18);
+  --line2:rgba(0,220,240,0.08);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --display:'Syne',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --radius:2px;
+}
+html{scroll-behavior:smooth;cursor:none}
+body{background:var(--ink);color:var(--text-primary);font-family:var(--display);font-size:14px;line-height:1.6;overflow-x:hidden}
+
+/* ── CUSTOM CURSOR ── */
+.cursor{position:fixed;pointer-events:none;z-index:9999;mix-blend-mode:difference}
+.cursor-dot{width:6px;height:6px;background:var(--gold2);border-radius:50%;position:fixed;transform:translate(-50%,-50%);transition:transform 0.1s;box-shadow:0 0 8px var(--gold2)}
+.cursor-ring{width:36px;height:36px;border:1px solid var(--gold);border-radius:50%;position:fixed;transform:translate(-50%,-50%);transition:all 0.15s ease;opacity:0.5;box-shadow:0 0 12px rgba(0,200,216,0.3)}
+.cursor-ring.hover{width:56px;height:56px;opacity:1;border-color:var(--gold2)}
+
+/* ── AMBIENT GLOW ── */
+body::before{
+  content:'';
+  position:fixed;
+  width:800px;height:800px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(0,200,216,0.04) 0%,transparent 70%);
+  top:-200px;right:-200px;
+  pointer-events:none;z-index:0;
+}
+/* ── GRAIN OVERLAY ── */
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:1000;opacity:0.4
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 60px;
+  mix-blend-mode:normal;
+}
+nav::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(10,10,15,0.95) 0%,transparent 100%);
+  pointer-events:none;
+}
+.nav-brand{position:relative;z-index:1;font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase}
+.nav-menu{position:relative;z-index:1;display:flex;gap:36px;list-style:none}
+.nav-menu a{font-family:var(--mono);font-size:10px;color:var(--text-secondary);text-decoration:none;letter-spacing:0.15em;text-transform:uppercase;transition:color 0.2s;position:relative}
+.nav-menu a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--gold);transition:width 0.25s}
+.nav-menu a:hover{color:var(--gold2)}
+.nav-menu a:hover::after{width:100%}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;display:flex;align-items:flex-end;
+  padding:0 60px 80px;position:relative;overflow:hidden;
+}
+
+/* Animated background geometry */
+.hero-bg{position:absolute;inset:0;z-index:0}
+.geo-circle{
+  position:absolute;border-radius:50%;
+  border:1px solid var(--line);
+  animation:slowSpin linear infinite;
+  box-shadow:0 0 40px rgba(0,200,216,0.04) inset;
+}
+.geo-circle:nth-child(1){width:900px;height:900px;top:-200px;right:-300px;animation-duration:80s}
+.geo-circle:nth-child(2){width:600px;height:600px;top:-50px;right:-100px;border-color:rgba(0,200,216,0.10);animation-duration:55s;animation-direction:reverse}
+.geo-circle:nth-child(3){width:300px;height:300px;top:100px;right:80px;border-color:rgba(0,200,216,0.10);animation-duration:35s}
+.geo-line{position:absolute;background:var(--line);transform-origin:left center}
+.geo-line:nth-child(4){width:1px;height:60vh;left:50%;top:0;opacity:0.3}
+.geo-line:nth-child(5){width:1px;height:40vh;left:70%;top:30vh;opacity:0.15}
+@keyframes slowSpin{to{transform:rotate(360deg)}}
+
+/* Vertical side text */
+.hero-side-text{
+  position:absolute;right:60px;top:50%;transform:translateY(-50%) rotate(90deg);
+  font-family:var(--mono);font-size:10px;color:var(--text-muted);letter-spacing:0.25em;
+  white-space:nowrap;transform-origin:center center;
+  animation:fadeIn 1.5s 1.5s ease forwards;opacity:0;
+}
+
+.hero-content{position:relative;z-index:1;max-width:1100px;width:100%}
+
+.hero-eyebrow{
+  font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:0.25em;
+  text-transform:uppercase;display:flex;align-items:center;gap:16px;
+  margin-bottom:32px;
+  opacity:0;animation:slideRight 0.9s 0.3s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-eyebrow::before{content:'';width:40px;height:1px;background:var(--gold)}
+.hero-eyebrow-dot{width:4px;height:4px;background:var(--gold2);border-radius:50%;box-shadow:0 0 6px var(--gold2)}
+
+.hero-name{
+  font-family:var(--serif);
+  font-size:clamp(64px,9vw,128px);
+  font-weight:300;line-height:0.9;
+  letter-spacing:-0.02em;
+  color:var(--text-primary);
+  margin-bottom:4px;
+  opacity:0;animation:slideUp 1s 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
+  text-shadow:0 2px 40px rgba(0,200,216,0.12);
+}
+.hero-name-2{
+  font-family:var(--serif);
+  font-size:clamp(64px,9vw,128px);
+  font-weight:300;line-height:0.9;
+  letter-spacing:-0.02em;
+  color:transparent;
+  -webkit-text-stroke:1px var(--gold);
+  margin-bottom:40px;
+  opacity:0;animation:slideUp 1s 0.7s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+
+.hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap}
+
+.hero-tagline{
+  font-family:var(--serif);font-size:22px;font-weight:300;font-style:italic;
+  color:var(--text-secondary);max-width:480px;line-height:1.5;
+  opacity:0;animation:slideUp 1s 0.9s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-tagline em{color:var(--gold2);font-style:normal}
+
+.hero-meta{
+  display:flex;flex-direction:column;gap:8px;text-align:right;
+  opacity:0;animation:fadeIn 1s 1.2s ease forwards;
+}
+.hero-meta-item{font-family:var(--mono);font-size:10px;color:var(--text-muted);letter-spacing:0.1em}
+.hero-meta-item span{color:var(--gold)}
+
+.scroll-hint{
+  position:absolute;bottom:80px;right:60px;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  opacity:0;animation:fadeIn 1s 2s ease forwards;
+}
+.scroll-line{width:1px;height:48px;background:linear-gradient(180deg,var(--gold) 0%,transparent 100%);animation:scrollPulse 2s ease infinite}
+.scroll-label{font-family:var(--mono);font-size:9px;color:var(--text-muted);letter-spacing:0.2em;writing-mode:vertical-rl}
+@keyframes scrollPulse{0%,100%{transform:scaleY(1);opacity:1}50%{transform:scaleY(0.5);opacity:0.4}}
+
+/* ── COMMON SECTION ── */
+section{position:relative;z-index:1}
+.container{max-width:1200px;margin:0 auto;padding:0 60px}
+
+.s-label{
+  font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:0.25em;
+  text-transform:uppercase;margin-bottom:12px;
+  display:flex;align-items:center;gap:12px;
+}
+.s-label::before{content:'';width:24px;height:1px;background:linear-gradient(90deg,var(--gold),var(--gold2));box-shadow:0 0 6px var(--gold2)}
+.s-num{color:var(--text-muted);margin-right:4px}
+
+.s-title{
+  font-family:var(--serif);font-size:clamp(36px,5vw,64px);
+  font-weight:300;line-height:1.1;color:var(--text-primary);margin-bottom:0;
+}
+.s-title em{color:var(--gold2);font-style:italic}
+.s-title strong{font-weight:600;-webkit-text-stroke:1px var(--gold2);filter:drop-shadow(0 0 12px rgba(0,220,240,0.35));color:transparent}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.8s ease,transform 0.8s cubic-bezier(0.16,1,0.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-32px);transition:opacity 0.8s ease,transform 0.8s cubic-bezier(0.16,1,0.3,1)}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+
+/* ── ABOUT ── */
+#about{padding:160px 0}
+.about-layout{display:grid;grid-template-columns:1fr 1fr;gap:120px;margin-top:80px;align-items:start}
+
+.about-text p{
+  font-family:var(--serif);font-size:19px;font-weight:300;
+  color:var(--text-secondary);line-height:1.85;margin-bottom:22px;
+}
+.about-text p strong{color:var(--text-primary);font-weight:500}
+.about-text p em{color:var(--gold2);font-style:italic}
+
+.about-quote{
+  border-left:2px solid var(--gold);padding:20px 28px;
+  margin:40px 0;
+  font-family:var(--serif);font-size:22px;font-weight:300;font-style:italic;
+  color:var(--text-primary);line-height:1.5;
+}
+.about-quote cite{display:block;margin-top:12px;font-size:13px;font-style:normal;font-family:var(--mono);color:var(--text-muted);letter-spacing:0.1em}
+
+.about-cards{display:flex;flex-direction:column;gap:1px;background:var(--line)}
+.about-card{
+  background:var(--ink2);padding:24px 28px;
+  transition:background 0.2s;
+}
+.about-card:hover{background:var(--ink3)}
+.about-card-label{font-family:var(--mono);font-size:10px;color:var(--gold2);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:8px}
+.about-card-val{font-family:var(--serif);font-size:17px;font-weight:500;color:var(--text-primary);margin-bottom:4px}
+.about-card-sub{font-size:12px;color:var(--text-muted)}
+
+/* ── NUMBERS ── */
+#numbers{padding:120px 0;background:linear-gradient(180deg,transparent 0%,rgba(0,200,216,0.05) 50%,transparent 100%)}
+.numbers-header{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:80px}
+.numbers-intro{font-family:var(--serif);font-size:18px;font-weight:300;color:var(--text-secondary);line-height:1.8}
+.numbers-intro strong{color:var(--text-primary)}
+
+.stats-row{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line)}
+.stat-block{
+  background:var(--ink);padding:40px 24px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.stat-block::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2));transform:scaleX(0);transition:transform 0.4s;box-shadow:0 0 8px var(--gold2)}
+.stat-block:hover::before{transform:scaleX(1)}
+.stat-num{font-family:var(--serif);font-size:clamp(32px,3vw,48px);font-weight:300;color:var(--gold2);line-height:1;margin-bottom:8px;text-shadow:0 0 20px rgba(0,220,240,0.4)}
+.stat-unit{font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:0.1em}
+.stat-desc{font-size:11px;color:var(--text-muted);margin-top:8px;line-height:1.5}
+
+.domain-bar{display:flex;flex-wrap:wrap;gap:10px;margin-top:48px}
+.domain-pill{
+  padding:8px 18px;
+  font-family:var(--mono);font-size:10px;letter-spacing:0.1em;
+  border:1px solid;
+  transition:all 0.2s;cursor:default;
+}
+.domain-pill:hover{transform:translateY(-2px)}
+.dp-health{border-color:rgba(30,107,107,0.5);color:#4ABFBF;background:rgba(30,107,107,0.08)}
+.dp-scm   {border-color:rgba(0,200,216,0.35);color:var(--gold2);background:rgba(0,200,216,0.10)}
+.dp-env   {border-color:rgba(60,140,80,0.4);color:#7EC68A;background:rgba(60,140,80,0.08)}
+.dp-energy{border-color:rgba(180,100,30,0.4);color:#E0A060;background:rgba(180,100,30,0.08)}
+.dp-ops   {border-color:rgba(140,60,180,0.4);color:#C080E8;background:rgba(140,60,180,0.08)}
+.dp-cyber {border-color:rgba(180,40,40,0.4);color:#E87070;background:rgba(180,40,40,0.08)}
+
+/* ── SKILLS ── */
+#skills{padding:160px 0}
+.skills-layout{display:grid;grid-template-columns:280px 1fr;gap:80px;margin-top:80px}
+.skills-nav{position:sticky;top:120px;height:fit-content}
+.skill-tab{
+  display:block;width:100%;text-align:left;
+  padding:14px 20px;background:none;border:none;border-left:2px solid var(--line2);
+  font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:0.12em;text-transform:uppercase;
+  cursor:pointer;transition:all 0.2s;
+}
+.skill-tab:hover{color:var(--text-secondary);border-left-color:rgba(0,200,216,0.3)}
+.skill-tab.active{color:var(--gold2);border-left-color:var(--gold)}
+.skills-content{}
+.skill-panel{display:none}
+.skill-panel.active{display:block}
+.skill-panel-title{font-family:var(--serif);font-size:32px;font-weight:300;color:var(--text-primary);margin-bottom:24px}
+.skill-panel-desc{font-family:var(--serif);font-size:16px;font-weight:300;color:var(--text-secondary);line-height:1.8;margin-bottom:36px;max-width:600px}
+.skill-tags-wrap{display:flex;flex-wrap:wrap;gap:8px}
+.stag{
+  padding:6px 14px;font-family:var(--mono);font-size:10px;letter-spacing:0.08em;
+  border:1px solid var(--line2);color:var(--text-muted);
+  transition:all 0.2s;
+}
+.stag:hover{border-color:var(--gold);color:var(--gold2);background:var(--gold-light)}
+.stag.highlight{border-color:rgba(0,200,216,0.35);color:var(--gold2);background:var(--gold-light)}
+
+/* ── TIMELINE ── */
+#experience{padding:160px 0;background:linear-gradient(180deg,transparent,rgba(18,18,26,0.6) 30%,rgba(18,18,26,0.6) 70%,transparent)}
+.timeline{margin-top:80px;position:relative}
+.timeline::before{content:'';position:absolute;left:200px;top:0;bottom:0;width:1px;background:var(--line)}
+
+.tl-item{display:grid;grid-template-columns:200px 1fr;gap:0;margin-bottom:0;position:relative}
+.tl-item:not(:last-child){padding-bottom:56px}
+
+.tl-left{padding-right:40px;padding-top:4px;text-align:right}
+.tl-year{font-family:var(--serif);font-size:13px;font-weight:300;color:var(--gold);letter-spacing:0.05em}
+.tl-org{font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-top:4px;line-height:1.5;letter-spacing:0.05em}
+.tl-badge{
+  display:inline-block;margin-top:10px;padding:3px 8px;
+  font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;
+  border:1px solid var(--line);color:var(--text-muted);
+}
+.tl-badge.live{border-color:rgba(0,200,216,0.5);color:var(--gold2);background:rgba(0,200,216,0.09)}
+.tl-badge.industry{border-color:rgba(30,107,107,0.4);color:#4ABFBF;background:rgba(30,107,107,0.06)}
+
+.tl-node{
+  position:absolute;left:197px;top:6px;
+  width:8px;height:8px;border-radius:50%;
+  border:1px solid var(--gold);background:var(--ink);
+  transition:background 0.2s,box-shadow 0.2s;
+  box-shadow:0 0 6px rgba(0,200,216,0.2);
+}
+.tl-item:hover .tl-node{background:var(--gold);box-shadow:0 0 12px var(--gold2)}
+
+.tl-right{padding-left:40px;border-left:none}
+.tl-title{font-family:var(--serif);font-size:19px;font-weight:500;color:var(--text-primary);margin-bottom:14px;line-height:1.3}
+.tl-bullets{list-style:none;display:flex;flex-direction:column;gap:8px}
+.tl-bullets li{font-size:13px;color:var(--text-muted);padding-left:16px;position:relative;line-height:1.6}
+.tl-bullets li::before{content:'';position:absolute;left:0;top:8px;width:6px;height:1px;background:var(--gold)}
+.tl-bullets li strong{color:var(--text-secondary);font-weight:500}
+
+/* ── PROJECTS ── */
+#projects{padding:160px 0}
+
+.proj-filter{display:flex;gap:0;margin:48px 0 56px;border-bottom:1px solid var(--line)}
+.pf-btn{
+  padding:12px 24px;background:none;border:none;border-bottom:2px solid transparent;
+  font-family:var(--mono);font-size:10px;color:var(--text-muted);letter-spacing:0.12em;
+  text-transform:uppercase;cursor:pointer;transition:all 0.2s;margin-bottom:-1px;
+}
+.pf-btn:hover{color:var(--text-secondary)}
+.pf-btn.active{color:var(--gold2);border-bottom-color:var(--gold)}
+
+.proj-masonry{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+.proj-card{
+  background:var(--ink2);border:1px solid var(--line2);
+  padding:32px;position:relative;overflow:hidden;
+  transition:border-color 0.3s,transform 0.3s;
+  display:flex;flex-direction:column;gap:14px;
+}
+.proj-card:hover{border-color:rgba(0,200,216,0.3);transform:translateY(-3px)}
+.proj-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold2),transparent);
+  opacity:0;transition:opacity 0.3s;
+  box-shadow:0 0 8px var(--gold2);
+}
+.proj-card:hover::after{opacity:1}
+.proj-card.hidden{display:none}
+
+.proj-card-top{display:flex;justify-content:space-between;align-items:flex-start}
+.proj-idx{font-family:var(--mono);font-size:10px;color:var(--text-muted);letter-spacing:0.1em}
+.proj-badge{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.08em;
+  padding:3px 9px;white-space:nowrap;
+}
+.badge-award{border:1px solid rgba(0,200,216,0.5);color:var(--gold2);background:rgba(0,200,216,0.10)}
+.badge-finalist{border:1px solid rgba(30,107,107,0.4);color:#4ABFBF;background:rgba(30,107,107,0.06)}
+.badge-research{border:1px solid var(--line2);color:var(--text-muted)}
+
+.proj-title{font-family:var(--serif);font-size:20px;font-weight:500;color:var(--text-primary);line-height:1.3}
+.proj-problem{
+  background:rgba(0,200,216,0.07);border-left:2px solid var(--gold);
+  padding:10px 14px;
+  font-size:12px;color:var(--text-muted);line-height:1.6;
+}
+.proj-problem em{font-style:normal;font-family:var(--mono);font-size:9px;color:var(--gold);letter-spacing:0.1em;margin-right:8px;text-transform:uppercase}
+.proj-desc{font-size:13px;color:var(--text-muted);line-height:1.75}
+
+.proj-metrics-row{display:flex;gap:0;border:1px solid var(--line2)}
+.pm{flex:1;padding:10px 12px;border-right:1px solid var(--line2);text-align:center}
+.pm:last-child{border-right:none}
+.pm-val{display:block;font-family:var(--serif);font-size:18px;font-weight:300;color:var(--gold2);line-height:1;margin-bottom:3px}
+.pm-label{font-family:var(--mono);font-size:9px;color:var(--text-muted);letter-spacing:0.05em;line-height:1.3;display:block}
+
+/* mini bar chart */
+.mini-bars{display:flex;flex-direction:column;gap:5px}
+.mini-bar-row{display:flex;align-items:center;gap:10px}
+.mini-bar-label{font-family:var(--mono);font-size:10px;color:var(--text-muted);width:90px;flex-shrink:0}
+.mini-bar-track{flex:1;height:4px;background:rgba(255,255,255,0.05);border-radius:1px;overflow:hidden}
+.mini-bar-fill{height:100%;border-radius:1px;background:var(--teal2)}
+.mini-bar-val{font-family:var(--mono);font-size:10px;color:#4ABFBF;width:36px;text-align:right}
+
+.proj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.ptag{padding:3px 8px;font-family:var(--mono);font-size:9px;letter-spacing:0.06em;border:1px solid var(--line2);color:var(--text-muted)}
+
+/* ── ACHIEVEMENTS ── */
+#achievements{padding:160px 0;background:linear-gradient(180deg,transparent,rgba(0,200,216,0.04) 50%,transparent)}
+
+.ach-layout{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);margin-top:64px}
+.ach-item{
+  background:var(--ink);padding:36px 32px;
+  display:flex;flex-direction:column;gap:10px;
+  position:relative;overflow:hidden;
+  transition:background 0.2s;
+}
+.ach-item:hover{background:var(--ink2)}
+.ach-item::before{
+  content:'';position:absolute;top:0;left:0;width:3px;height:0;
+  transition:height 0.4s;
+}
+.ach-item:hover::before{height:100%}
+.ach-item.rank-1::before{background:linear-gradient(180deg,var(--gold2),var(--gold));box-shadow:2px 0 12px rgba(0,220,240,0.4)}
+.ach-item.rank-best::before{background:var(--teal2)}
+.ach-item.rank-3::before{background:#7EC68A}
+.ach-item.rank-fin::before{background:var(--text-muted)}
+
+.ach-rank{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase}
+.ach-item.rank-1 .ach-rank{color:var(--gold2)}
+.ach-item.rank-best .ach-rank{color:#4ABFBF}
+.ach-item.rank-3 .ach-rank{color:#7EC68A}
+.ach-item.rank-fin .ach-rank{color:var(--text-muted)}
+.ach-title{font-family:var(--serif);font-size:16px;font-weight:500;color:var(--text-primary);line-height:1.4}
+.ach-desc{font-size:12px;color:var(--text-muted);line-height:1.6}
+.ach-meta{font-family:var(--mono);font-size:10px;color:var(--text-muted);margin-top:auto;padding-top:12px;border-top:1px solid var(--line2)}
+
+/* ── CERTIFICATIONS ── */
+#certs{padding:120px 0}
+.certs-layout{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px}
+.cert-card{
+  border:1px solid var(--line);padding:36px 28px;
+  position:relative;overflow:hidden;
+  transition:border-color 0.3s;
+}
+.cert-card:hover{border-color:rgba(0,200,216,0.35)}
+.cert-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold2),transparent);
+  transform:scaleX(0);transition:transform 0.4s;
+  box-shadow:0 0 8px var(--gold2);
+}
+.cert-card:hover::before{transform:scaleX(1)}
+.cert-icon{font-family:var(--mono);font-size:28px;color:var(--gold);margin-bottom:20px;line-height:1}
+.cert-name{font-family:var(--serif);font-size:20px;font-weight:500;color:var(--text-primary);line-height:1.3;margin-bottom:8px}
+.cert-issuer{font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px}
+.cert-desc{font-size:12.5px;color:var(--text-muted);line-height:1.7}
+.cert-score{
+  display:inline-block;margin-top:16px;
+  font-family:var(--serif);font-size:28px;font-weight:300;color:var(--gold2);
+}
+.cert-score-label{font-family:var(--mono);font-size:10px;color:var(--text-muted);display:block;margin-top:2px}
+
+/* ── CONTACT ── */
+#contact{padding:160px 0 100px;border-top:1px solid var(--line)}
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start}
+.contact-statement{
+  font-family:var(--serif);font-size:clamp(28px,4vw,48px);
+  font-weight:300;line-height:1.25;color:var(--text-primary);
+  margin-bottom:24px;
+}
+.contact-statement em{color:var(--gold2);font-style:italic}
+.contact-body{font-family:var(--serif);font-size:17px;font-weight:300;color:var(--text-secondary);line-height:1.8;margin-bottom:40px}
+
+.cta-group{display:flex;gap:16px;flex-wrap:wrap}
+.btn-prim{
+  padding:14px 32px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--ink);
+  font-family:var(--mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;
+  text-decoration:none;display:inline-block;transition:all 0.2s;border:none;cursor:none;
+}
+.btn-prim:hover{background:linear-gradient(135deg,var(--gold2),var(--gold3));transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,200,216,0.35)}
+.btn-ghost{
+  padding:14px 32px;border:1px solid var(--line);color:var(--text-secondary);
+  font-family:var(--mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;
+  text-decoration:none;display:inline-block;transition:all 0.2s;
+}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold2);transform:translateY(-2px)}
+
+.contact-info{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)}
+.contact-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 0;border-bottom:1px solid var(--line);
+  transition:border-color 0.2s;
+}
+.contact-row:hover{border-bottom-color:var(--gold)}
+.ci-label{font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase}
+.ci-val{font-family:var(--serif);font-size:16px;color:var(--text-primary)}
+.ci-status{display:flex;align-items:center;gap:8px}
+.ci-dot{width:6px;height:6px;border-radius:50%;background:var(--gold2);animation:pulse 2s ease infinite;box-shadow:0 0 8px var(--gold2)}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+
+footer{padding:32px 60px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.footer-left{font-family:var(--mono);font-size:10px;color:var(--text-muted);letter-spacing:0.1em}
+.footer-right{font-family:var(--serif);font-size:14px;color:var(--text-muted);font-style:italic}
+
+/* ── ANIMATIONS ── */
+@keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideRight{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--ink2)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--gold),var(--gold2));border-radius:2px;box-shadow:0 0 6px rgba(0,200,216,0.5)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:16px 24px}.nav-menu{display:none}
+  #hero{padding:0 24px 60px}.hero-name,.hero-name-2{font-size:52px}
+  .container{padding:0 24px}
+  .about-layout,.numbers-header,.contact-layout{grid-template-columns:1fr;gap:48px}
+  .stats-row{grid-template-columns:repeat(3,1fr)}
+  .skills-layout{grid-template-columns:1fr}
+  .skills-nav{position:relative;top:0;display:flex;flex-wrap:wrap;gap:0}
+  .skill-tab{width:auto;border-left:none;border-bottom:2px solid var(--line2)}
+  .skill-tab.active{border-bottom-color:var(--gold)}
+  .proj-masonry,.ach-layout,.certs-layout{grid-template-columns:1fr}
+  .hero-side-text,.scroll-hint{display:none}
+  footer{padding:24px;flex-direction:column;gap:12px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor-dot" id="dot"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<nav>
+  <div class="nav-brand">RPP</div>
+  <ul class="nav-menu">
+    <li><a href="#about">About</a></li>
+    <li><a href="#numbers">Impact</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Research</a></li>
+    <li><a href="#achievements">Awards</a></li>
+    <li><a href="#certs">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════════════════ HERO ══════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="geo-circle"></div>
+    <div class="geo-circle"></div>
+    <div class="geo-circle"></div>
+    <div class="geo-line"></div>
+    <div class="geo-line"></div>
+  </div>
+
+  <div class="hero-side-text">Industrial Engineering · Universitas Islam Indonesia · 2022</div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      Supply Chain &amp; ERP Specialist
+      <div class="hero-eyebrow-dot"></div>
+      GPA 3.88 / 4.00
+    </div>
+    <h1 class="hero-name">Rangga</h1>
+    <h1 class="hero-name-2">Pamungkas</h1>
+    <div class="hero-bottom">
+      <p class="hero-tagline">
+        Where <em>analytical precision</em> meets<br>
+        the clarity of <em>award-winning</em> leadership —<br>
+        <span style="font-size:0.7em;color:var(--text-muted);font-style:normal;letter-spacing:0.05em">ready to deliver from day one.</span>
+      </p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">Location <span>Sleman, Yogyakarta</span></div>
+        <div class="hero-meta-item">Institution <span>UII Industrial Engineering</span></div>
+        <div class="hero-meta-item">Status <span>Available for Opportunities</span></div>
+        <div class="hero-meta-item">English <span>CEPT 491</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span class="scroll-label">Scroll</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ ABOUT ══════════════════════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="s-label"><span class="s-num">01 —</span> Profile</div>
+    <h2 class="s-title reveal">Who I <em>Am</em></h2>
+    <div class="about-layout">
+      <div class="about-text reveal-left">
+        <p>I am a <strong>leader who builds systems, a professional who navigates complexity, and an analyst who lets data speak first.</strong> As a final-year Industrial Engineering student at Universitas Islam Indonesia (GPA 3.88/4.00), I have consistently operated across environments that most students encounter separately — and thrived in all of them.</p>
+        <p>My leadership credentials are not theoretical. I <strong>built an entire student operations system from zero</strong> as Departmental Staff Coordinator — SOPs, divisional structures, accountability frameworks for 25+ members where none existed. As Career Development Staff, I scaled programs to reach <em>350+ students</em> and facilitated partnerships with <strong>20+ companies</strong>, drawing <strong>1,700+ visitors</strong>, including international liaison roles with Harvard-affiliated and MBTI programs. As SAP ERP Lab Assistant, I mentored <strong>480+ students across two years</strong> while developing 25+ learning modules per semester.</p>
+        <p>Every decision I make is <strong>data-driven by discipline</strong>: BCR 1.128 on a waste management system. AUC 0.99 on a clinical AI diagnostic. Budget variance held below 10% over a 95-day project. A VPI procurement framework grounded in SCOR, AHP, and QCDFR methodology — applied at <em>PT Saka Energi Indonesia</em> under SKK Migas regulation. The numbers are not decoration. They are the argument.</p>
+        <blockquote class="about-quote">
+          "I do not wait to be handed a system. I build one — then I make it better."
+          <cite>— Personal Philosophy</cite>
+        </blockquote>
+      </div>
+      <div class="about-cards reveal">
+        <div class="about-card">
+          <div class="about-card-label">Education</div>
+          <div class="about-card-val">Universitas Islam Indonesia</div>
+          <div class="about-card-sub">B.Eng. Industrial Engineering · GPA 3.88/4.00 · 2022–Present</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-label">Latest Industry Experience</div>
+          <div class="about-card-val">PT Saka Energi Indonesia (PGN Saka)</div>
+          <div class="about-card-sub">SCM Department — Procurement & Vendor Evaluation · 2025</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-label">Core Technical Stack</div>
+          <div class="about-card-val">SAP S/4HANA · SAP Fiori · MM Module</div>
+          <div class="about-card-sub">ERP Lab Assistant · SAP GBI Certified · 2024–Present</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-label">Certifications</div>
+          <div class="about-card-val">BNSP-HSO · SAP S/4HANA · CEPT 491</div>
+          <div class="about-card-sub">Nationally certified in Health & Safety, SAP, and English proficiency</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-label">Target Path</div>
+          <div class="about-card-val">SCM · Procurement · ERP · MT Program</div>
+          <div class="about-card-sub">Oil & Gas · Manufacturing · Energy · Consulting</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ NUMBERS ══════════════════════════════ -->
+<section id="numbers">
+  <div class="container">
+    <div class="s-label"><span class="s-num">02 —</span> Impact</div>
+    <div class="numbers-header">
+      <h2 class="s-title reveal">By the <em>Numbers</em></h2>
+      <p class="numbers-intro reveal">10 research and design works. Every number is validated — financially, competitively, or through field data. <strong>Not claims. Evidence.</strong> This is what a data-driven professional looks like before graduation.</p>
+    </div>
+    <div class="stats-row reveal">
+      <div class="stat-block"><div class="stat-num">3.88</div><div class="stat-unit">/ 4.00</div><div class="stat-desc">Cumulative GPA</div></div>
+      <div class="stat-block"><div class="stat-num">480+</div><div class="stat-unit">Students</div><div class="stat-desc">ERP Practicum Mentored</div></div>
+      <div class="stat-block"><div class="stat-num">94–99</div><div class="stat-unit">% Accuracy</div><div class="stat-desc">CNN-LSTM Clinical Model</div></div>
+      <div class="stat-block"><div class="stat-num">1.128</div><div class="stat-unit">BCR</div><div class="stat-desc">ESION Financial Viability</div></div>
+      <div class="stat-block"><div class="stat-num">8×</div><div class="stat-unit">Awards</div><div class="stat-desc">National Competitions</div></div>
+      <div class="stat-block"><div class="stat-num">92</div><div class="stat-unit">Teams Beaten</div><div class="stat-desc">EGSA UGM 2024 · 1st Place</div></div>
+    </div>
+    <div class="domain-bar reveal">
+      <span class="domain-pill dp-scm">SCM &amp; ERP</span>
+      <span class="domain-pill dp-health">HealthTech &amp; Biomedical</span>
+      <span class="domain-pill dp-env">Environmental &amp; Circular Economy</span>
+      <span class="domain-pill dp-energy">Energy Policy &amp; Net Zero</span>
+      <span class="domain-pill dp-ops">Operations Research</span>
+      <span class="domain-pill dp-cyber">AI &amp; Cybersecurity</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ SKILLS ══════════════════════════════ -->
+<section id="skills">
+  <div class="container">
+    <div class="s-label"><span class="s-num">03 —</span> Competencies</div>
+    <h2 class="s-title reveal">Core <em>Skills</em></h2>
+    <div class="skills-layout reveal">
+      <div class="skills-nav">
+        <button class="skill-tab active" data-panel="erp">ERP &amp; Systems</button>
+        <button class="skill-tab" data-panel="scm">Supply Chain</button>
+        <button class="skill-tab" data-panel="or">Operations Research</button>
+        <button class="skill-tab" data-panel="policy">Policy &amp; Strategy</button>
+        <button class="skill-tab" data-panel="comm">Leadership &amp; Comm.</button>
+      </div>
+      <div class="skills-content">
+        <div class="skill-panel active" id="panel-erp">
+          <div class="skill-panel-title">ERP &amp; Information Systems</div>
+          <div class="skill-panel-desc">Hands-on operator of SAP S/4HANA and SAP Fiori in a live laboratory environment. Developed 25+ learning modules per semester across six ERP modules, and applied the MM procurement module directly during an industry internship.</div>
+          <div class="skill-tags-wrap">
+            <span class="stag highlight">SAP S/4HANA</span><span class="stag highlight">SAP Fiori</span>
+            <span class="stag highlight">Material Management (MM)</span><span class="stag">Production Planning (PP)</span>
+            <span class="stag">Discrete Manufacturing</span><span class="stag">BOM Routing</span>
+            <span class="stag">Procurement Cycle</span><span class="stag">Inventory Management</span>
+            <span class="stag">MRP</span><span class="stag">Cross-module Integration</span>
+            <span class="stag">Global Bike Inc. Simulation</span>
+          </div>
+        </div>
+        <div class="skill-panel" id="panel-scm">
+          <div class="skill-panel-title">Supply Chain &amp; Procurement</div>
+          <div class="skill-panel-desc">Designed an Integrated Vendor Performance Index (VPI) combining SCOR, Frazelle's KPI, and AHP with QCDFR weighting for PT Saka Energi Indonesia. Familiar with SKK Migas-regulated procurement standards in upstream oil &amp; gas.</div>
+          <div class="skill-tags-wrap">
+            <span class="stag highlight">Vendor Evaluation</span><span class="stag highlight">SCOR Framework</span>
+            <span class="stag highlight">AHP</span><span class="stag highlight">QCDFR</span>
+            <span class="stag">Frazelle's KPI</span><span class="stag">OTIF Optimization</span>
+            <span class="stag">VPI Design</span><span class="stag">SKK Migas Regulations</span>
+            <span class="stag">IOG / CIVG</span><span class="stag">HSSE</span>
+            <span class="stag">Materials Management</span><span class="stag">Logistics Planning</span>
+          </div>
+        </div>
+        <div class="skill-panel" id="panel-or">
+          <div class="skill-panel-title">Operations Research &amp; Engineering</div>
+          <div class="skill-panel-desc">Applied multi-criteria methods across 10 research works — from financial feasibility (AHP/BCR), ergonomics (REBA/CVL), design innovation (TRIZ/QFD), to project scheduling (PERT/WBS/AON) and route optimization (LRP/ALNS).</div>
+          <div class="skill-tags-wrap">
+            <span class="stag highlight">PMBOK (WBS/PERT/AON)</span><span class="stag highlight">AHP</span>
+            <span class="stag highlight">QFD</span><span class="stag highlight">TRIZ</span>
+            <span class="stag">Goal Programming</span><span class="stag">ANP</span>
+            <span class="stag">LRP Multi-Trip</span><span class="stag">ALNS Heuristic</span>
+            <span class="stag">BCR Analysis</span><span class="stag">REBA Ergonomics</span>
+            <span class="stag">CVL Analysis</span><span class="stag">Risk Analysis</span>
+          </div>
+        </div>
+
+        <div class="skill-panel" id="panel-policy">
+          <div class="skill-panel-title">Policy, Strategy &amp; Sustainability</div>
+          <div class="skill-panel-desc">Produced nationally-recognized policy works across energy transition (MERAPI roadmap, 500 MW EBT by 2038), waste-to-energy (WIJAYA, Pyrolysis 70% efficiency), and disaster governance (SIAGALIMA multi-level framework) — all grounded in quantitative evidence.</div>
+          <div class="skill-tags-wrap">
+            <span class="stag highlight">SCQA Framework</span><span class="stag highlight">STEEP Analysis</span>
+            <span class="stag highlight">ESG Metrics</span><span class="stag">RUED 2020–2050</span>
+            <span class="stag">Multi-Level Governance (MLG)</span><span class="stag">Pentahelix Model</span>
+            <span class="stag">Energy Policy Mapping</span><span class="stag">Net Zero Strategy</span>
+            <span class="stag">Circular Economy</span><span class="stag">Disaster ERP</span>
+          </div>
+        </div>
+        <div class="skill-panel" id="panel-comm">
+          <div class="skill-panel-title">Leadership &amp; Communication</div>
+          <div class="skill-panel-desc">Coordinated 25+ staff across 3 divisions as departmental PIC. Won 2 national 1st-place writing awards and 3 Best Presentation awards across technical and policy forums — demonstrating that analytical rigor and communicative clarity are not trade-offs.</div>
+          <div class="skill-tags-wrap">
+            <span class="stag highlight">Team Coordination (25+ pax)</span><span class="stag highlight">Stakeholder Liaison</span>
+            <span class="stag highlight">Persuasive Writing</span><span class="stag highlight">Best Presentation × 3</span>
+            <span class="stag">Strategic PR</span><span class="stag">Media Management</span>
+            <span class="stag">Content Strategy</span><span class="stag">Policy Brief Writing</span>
+            <span class="stag">Academic Administration</span><span class="stag">Event Management</span>
+            <span class="stag">Mentoring (480+ students)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ EXPERIENCE ══════════════════════════════ -->
+<section id="experience">
+  <div class="container">
+    <div class="s-label"><span class="s-num">04 —</span> Work &amp; Leadership</div>
+    <h2 class="s-title reveal">Experience <em>Timeline</em></h2>
+    <div class="timeline reveal">
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-year">2025</div>
+          <div class="tl-org">PT Saka Energi<br>Indonesia<br>(PGN Saka)</div>
+          <span class="tl-badge industry">Industry</span>
+        </div>
+        <div class="tl-node"></div>
+        <div class="tl-right">
+          <div class="tl-title">Practical Work — SCM Department, Procurement</div>
+          <ul class="tl-bullets">
+            <li>Evaluated vendor quotations in prequalification under <strong>SKK Migas procurement regulations</strong>; studied IOG &amp; CIVG frameworks, HSSE requirements, and KKKS asset management</li>
+            <li>Produced: <strong>"Design of an Integrated VPI Based on SCOR, Frazelle's KPI &amp; AHP with QCDFR Approach to Improve OTIF in Procurement Processes"</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-year">Jan 2025 – Present</div>
+          <div class="tl-org">Direktorat<br>Pengembangan<br>Karier &amp; Alumni UII</div>
+          <span class="tl-badge live">Active</span>
+        </div>
+        <div class="tl-node"></div>
+        <div class="tl-right">
+          <div class="tl-title">Career Development Staff</div>
+          <ul class="tl-bullets">
+            <li>Facilitated <strong>Student Soft Skills Development</strong> for <strong>350+ students</strong> (1 full cohort, 1 faculty) — designed and delivered interactive professional readiness and workplace competency sessions</li>
+            <li>Contributed to <strong>Integrated Career Days</strong> attracting <strong>1,700+ visitors</strong> and involving <strong>20+ companies</strong> and prominent public figures; supported company liaison, logistics coordination, and event execution across multiple venues</li>
+            <li>Executed <strong>On Campus Recruitment, Career Counseling, Career Mentoring, Career Seminar, and Job Fair</strong> programs as part of a holistic student career ecosystem</li>
+            <li>Served as <strong>Liaison Officer for international programs</strong> (MBTI and Harvard-affiliated modules) — bridging foreign providers with institutional requirements</li>
+            <li>Supported <strong>Personal Career Planning System (PCPS)</strong> implementation; contributed to alumni graduate data analysis for institutional strategic decision-making</li>
+            <li>Contributed to <strong>Ikatan Keluarga Alumni (IKA) UII</strong> events at university level — supported coordination and logistics between Direktorat Pengembangan Karier dan Alumni and the broader UII alumni network</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-year">2024 – Present</div>
+          <div class="tl-org">SAP ERP Laboratory<br>IE UII</div>
+          <span class="tl-badge live">Active</span>
+        </div>
+        <div class="tl-node"></div>
+        <div class="tl-right">
+          <div class="tl-title">Assistant — SAP Enterprise Resource Planning Laboratory</div>
+          <ul class="tl-bullets">
+            <li>Supported <strong>480+ practicum students across 2 years</strong>; mentored ~15 per half-semester in SAP S/4HANA Material Management</li>
+            <li>Developed <strong>25+ learning modules per semester</strong> across 6 SAP ERP modules; standardized practicum documentation and delivery quality</li>
+            <li>Operated SAP Fiori &amp; S/4HANA live; specialized in MM procurement + cross-module integration (Global Bike Inc. simulation)</li>
+            <li>As <strong>Creative Department Coordinator</strong>: managed @laberpuii, event documentation, and external engagement</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-year">Oct 2023 – Present</div>
+          <div class="tl-org">Industrial Engineering<br>Dept., UII</div>
+          <span class="tl-badge live">Active</span>
+        </div>
+        <div class="tl-node"></div>
+        <div class="tl-right">
+          <div class="tl-title">Student Staff Coordinator — Industrial Engineering Department</div>
+          <ul class="tl-bullets">
+            <li><strong>Built the Student Staff system from scratch</strong> — defined divisional roles, operational SOPs, and accountability structures for 25+ members across 3 divisions where no formal framework existed</li>
+            <li>Directed graduation preparation (<strong>Pembekalan Wisuda</strong>), full cohort coordination, and administrative management (Keyin); served as <strong>MC</strong> for departmental events and academic ceremonies</li>
+            <li>Maintained direct coordination with <strong>lecturers (Koordinasi Dosen)</strong>, IKATI UII Alumni Association, UII Marketing Directorate, and visiting institutions — acting as the primary student-institutional bridge</li>
+            <li>Led <strong>social media strategy and content creation</strong> for the department; drove digital presence through systematic publishing, event documentation, and engagement campaigns</li>
+            <li>Channeled student aspirations, funding proposals, and policy feedback to relevant stakeholders — ensuring student voice was formally represented at the department level</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-year">2024</div>
+          <div class="tl-org">Kemendikbud<br>Ristek RI (P2MW)</div>
+          <span class="tl-badge">Funded</span>
+        </div>
+        <div class="tl-node"></div>
+        <div class="tl-right">
+          <div class="tl-title">Operational Manager — "Buahlicious Bite"</div>
+          <ul class="tl-bullets">
+            <li>Secured <strong>Ministry-level competitive funding</strong> through compelling proposal writing</li>
+            <li>Designed and implemented operational strategies improving process efficiency and product innovation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-year">2024 – 2025</div>
+          <div class="tl-org">GDGoC · SRE UII<br>PETA FTI</div>
+          <span class="tl-badge">Multi-org</span>
+        </div>
+        <div class="tl-node"></div>
+        <div class="tl-right">
+          <div class="tl-title">Staff — Event, Public Relations &amp; Logistics</div>
+          <ul class="tl-bullets">
+            <li><strong>GDGoC UII</strong> — Event &amp; PR: coordinated logistics, external partner communication, and event visibility</li>
+            <li><strong>SRE UII</strong> — PR Staff: developed outreach programs expanding presence in the renewable energy ecosystem</li>
+            <li><strong>PETA FTI 2024</strong> — PR, Transportation &amp; Consumption: managed event logistics and stakeholder communication</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ PROJECTS ══════════════════════════════ -->
+<section id="projects">
+  <div class="container">
+    <div class="s-label"><span class="s-num">05 —</span> Research &amp; Design Works</div>
+    <h2 class="s-title reveal">Selected <em>Projects</em></h2>
+
+    <div class="proj-filter reveal">
+      <button class="pf-btn active" data-f="all">All</button>
+      <button class="pf-btn" data-f="scm">SCM &amp; ERP</button>
+      <button class="pf-btn" data-f="health">HealthTech</button>
+      <button class="pf-btn" data-f="env">Sustainability</button>
+      <button class="pf-btn" data-f="energy">Energy</button>
+      <button class="pf-btn" data-f="ops">Operations</button>
+    </div>
+
+    <div class="proj-masonry reveal" id="proj-grid">
+
+      <div class="proj-card" data-c="scm">
+        <div class="proj-card-top"><span class="proj-idx">01 / SCM &amp; Procurement</span><span class="proj-badge badge-research">Industry Report · 2025</span></div>
+        <div class="proj-title">Integrated Vendor Performance Index (VPI) for OTIF Improvement</div>
+        <div class="proj-problem"><em>Problem</em>Fragmented vendor evaluation causing OTIF failures in SKK Migas-regulated upstream oil &amp; gas procurement.</div>
+        <div class="proj-desc">Synthesized SCOR model, Frazelle's KPI, and AHP with QCDFR (Quality, Cost, Delivery, Flexibility, Responsiveness) weighting to build a multi-criteria VPI framework. Applied at PT Saka Energi Indonesia to identify highest-priority sub-criteria for procurement OTIF improvement.</div>
+        <div class="proj-metrics-row">
+          <div class="pm"><span class="pm-val">SCOR+AHP</span><span class="pm-label">Dual Framework</span></div>
+          <div class="pm"><span class="pm-val">QCDFR</span><span class="pm-label">5-Dim KPI</span></div>
+          <div class="pm"><span class="pm-val">SKK Migas</span><span class="pm-label">Regulatory Context</span></div>
+        </div>
+        <div class="proj-tags"><span class="ptag">SCOR</span><span class="ptag">AHP</span><span class="ptag">QCDFR</span><span class="ptag">Frazelle KPI</span><span class="ptag">Vendor Evaluation</span><span class="ptag">Oil &amp; Gas</span></div>
+      </div>
+
+      <div class="proj-card" data-c="env">
+        <div class="proj-card-top"><span class="proj-idx">02 / Sustainability</span><span class="proj-badge badge-award">🏆 2nd Favorite · FIT UII Capstone</span></div>
+        <div class="proj-title">ESION — Automated Waste Sorting Machine</div>
+        <div class="proj-problem"><em>Problem</em>Waste management crisis in DIY Province — low sorting infrastructure causing environmental contamination and public health risks.</div>
+        <div class="proj-desc">Served as <strong>Project Manager</strong> for the design of ESION — a 2-in-1 automated waste sorting station (1.5m × 0.8m × 1.6m) for Desa Pagerjurang-Magersari, Sleman. AHP multi-criteria analysis selected ESION as the optimal solution (score 0.596 vs. Trashboom 0.322, TPS Mini 0.083). QFD translated Voice-of-Customer from 7 field respondents; TRIZ matrix resolved technical contradictions. Organic section: shredding → EM4 fermentation → compost output. Anorganic section: shredding → high-temperature incineration → eco-filtered ash. Validated financially and through Guttman-scale usability testing across three user categories.</div>
+        <div class="proj-metrics-row">
+          <div class="pm"><span class="pm-val">BCR 1.128</span><span class="pm-label">Financially Viable</span></div>
+          <div class="pm"><span class="pm-val">864 kg/yr</span><span class="pm-label">Compost Capacity</span></div>
+          <div class="pm"><span class="pm-val">Rp 55.7M</span><span class="pm-label">Annual Benefit</span></div>
+        </div>
+        <div class="mini-bars">
+          <div class="mini-bar-row"><span class="mini-bar-label">Expert</span><div class="mini-bar-track"><div class="mini-bar-fill" style="width:75%"></div></div><span class="mini-bar-val">75%</span></div>
+          <div class="mini-bar-row"><span class="mini-bar-label">Intermediate</span><div class="mini-bar-track"><div class="mini-bar-fill" style="width:66%"></div></div><span class="mini-bar-val">66%</span></div>
+          <div class="mini-bar-row"><span class="mini-bar-label">Public</span><div class="mini-bar-track"><div class="mini-bar-fill" style="width:58%"></div></div><span class="mini-bar-val">58%</span></div>
+        </div>
+        <div class="proj-tags"><span class="ptag">AHP</span><span class="ptag">QFD</span><span class="ptag">TRIZ</span><span class="ptag">BCR Analysis</span><span class="ptag">Ergonomics</span><span class="ptag">Circular Economy</span></div>
+      </div>
+
+      <div class="proj-card" data-c="health">
+        <div class="proj-card-top"><span class="proj-idx">03 / HealthTech</span><span class="proj-badge badge-finalist">IEEE ITB Finalist</span></div>
+        <div class="proj-title">E-Textiles Sport Shirt — AI Smart Wearable for Ergonomics</div>
+        <div class="proj-problem"><em>Problem</em>High musculoskeletal injury risk from non-ergonomic posture during physical activity — no accessible real-time feedback system for general users.</div>
+        <div class="proj-desc">Smart garment embedding IMU sensors (Accelerometer + Gyroscope, 100–500 Hz) + Heart Rate monitoring. Deep Learning validates REBA thresholds and CVL metrics in real-time; delivers haptic and visual feedback for autonomous posture correction.</div>
+        <div class="proj-metrics-row">
+          <div class="pm"><span class="pm-val">100–500Hz</span><span class="pm-label">IMU Rate</span></div>
+          <div class="pm"><span class="pm-val">REBA 8</span><span class="pm-label">High Risk Trigger</span></div>
+          <div class="pm"><span class="pm-val">&lt;3 sec</span><span class="pm-label">Emergency Delay</span></div>
+        </div>
+        <div class="mini-bars">
+          <div class="mini-bar-row"><span class="mini-bar-label">Running</span><div class="mini-bar-track"><div class="mini-bar-fill" style="width:93%"></div></div><span class="mini-bar-val">46.7%</span></div>
+          <div class="mini-bar-row"><span class="mini-bar-label">Cable Machine</span><div class="mini-bar-track"><div class="mini-bar-fill" style="width:90%"></div></div><span class="mini-bar-val">45.0%</span></div>
+          <div class="mini-bar-row"><span class="mini-bar-label">Hockey</span><div class="mini-bar-track"><div class="mini-bar-fill" style="width:70%"></div></div><span class="mini-bar-val">35.0%</span></div>
+        </div>
+        <div class="proj-tags"><span class="ptag">Deep Learning</span><span class="ptag">IMU Sensor</span><span class="ptag">REBA</span><span class="ptag">CVL</span><span class="ptag">IoT Wearable</span><span class="ptag">Ergonomics</span></div>
+      </div>
+
+      <div class="proj-card" data-c="health">
+        <div class="proj-card-top"><span class="proj-idx">04 / HealthTech</span><span class="proj-badge badge-finalist">IEEE ITB Finalist</span></div>
+        <div class="proj-title">SleepSense — Ambulatory IoT Diagnostic for Sleep Apnea</div>
+        <div class="proj-problem"><em>Problem</em>80–90% global underdiagnosis rate of OSA — conventional Polysomnography is invasive, expensive, and inaccessible outside hospitals.</div>
+        <div class="proj-desc">Architected an ambulatory IoT device (Piezoelectric, ECG, SpO2, Radar RCWL) with Hybrid CNN-LSTM edge processing to detect Work of Breathing (WOB). Classifies AHI severity at home with clinical-grade accuracy, streaming to a telemedicine dashboard.</div>
+        <div class="proj-metrics-row">
+          <div class="pm"><span class="pm-val">94%</span><span class="pm-label">Detection Accuracy</span></div>
+          <div class="pm"><span class="pm-val">AUC 0.99</span><span class="pm-label">Screening Precision</span></div>
+          <div class="pm"><span class="pm-val">AUC 0.91</span><span class="pm-label">Severity Class.</span></div>
+        </div>
+        <div class="proj-tags"><span class="ptag">CNN-LSTM</span><span class="ptag">Edge Computing</span><span class="ptag">IoT Multimodal</span><span class="ptag">SpO2/ECG</span><span class="ptag">AHI Classification</span><span class="ptag">Telemedicine</span></div>
+      </div>
+
+      <div class="proj-card" data-c="ops">
+        <div class="proj-card-top"><span class="proj-idx">05 / Project Management</span><span class="proj-badge badge-research">PMBOK Standard</span></div>
+        <div class="proj-title">GROVE — Green Agriculture &amp; Permaculture PM</div>
+        <div class="proj-problem"><em>Problem</em>Economic fragility and land degradation among farmers in Desa Giri Peni from conventional methods and limited capital access.</div>
+        <div class="proj-desc">Full PMBOK project lifecycle: WBS definition, PERT three-point estimation, AON network sequencing, and Qualitative Risk Analysis. Delivered a tightly-controlled project plan with farmer productivity KPIs.</div>
+        <div class="proj-metrics-row">
+          <div class="pm"><span class="pm-val">95 days</span><span class="pm-label">Critical Path</span></div>
+          <div class="pm"><span class="pm-val">Rp 174.3M</span><span class="pm-label">Budget Locked</span></div>
+          <div class="pm"><span class="pm-val">+25%</span><span class="pm-label">Productivity KPI</span></div>
+        </div>
+        <div class="proj-tags"><span class="ptag">PMBOK</span><span class="ptag">PERT</span><span class="ptag">WBS</span><span class="ptag">AON</span><span class="ptag">Risk Analysis</span><span class="ptag">Agri-sustainability</span></div>
+      </div>
+
+      <div class="proj-card" data-c="scm">
+        <div class="proj-card-top"><span class="proj-idx">06 / ERP Implementation</span><span class="proj-badge badge-research">SAP Simulation</span></div>
+        <div class="proj-title">ERP SAP Implementation — Ziidan Wood (MTO Furniture)</div>
+        <div class="proj-problem"><em>Problem</em>Inefficiencies in inventory management, vendor selection, and production lead time in a Make-to-Order furniture manufacturing SME.</div>
+        <div class="proj-desc">Designed and simulated a complete ERP architecture: full procurement cycle, Discrete Manufacturing with BOM routing, Production Planning integration. Centralized shop floor documentation; optimized vendor zone logistics.</div>
+        <div class="proj-metrics-row">
+          <div class="pm"><span class="pm-val">Rp 50–60M</span><span class="pm-label">Monthly Revenue</span></div>
+          <div class="pm"><span class="pm-val">80/20</span><span class="pm-label">Digital/Offline Split</span></div>
+          <div class="pm"><span class="pm-val">≤10 km</span><span class="pm-label">Vendor Zone</span></div>
+        </div>
+        <div class="proj-tags"><span class="ptag">SAP MM</span><span class="ptag">PP Discrete</span><span class="ptag">BOM Routing</span><span class="ptag">Procurement Cycle</span><span class="ptag">Make-to-Order</span></div>
+      </div>
+
+      <div class="proj-card" data-c="ops">
+        <div class="proj-card-top"><span class="proj-idx">07 / Operations Research</span><span class="proj-badge badge-research">Field Research</span></div>
+        <div class="proj-title">Shift Scheduling Optimization — SPBU Operator Fatigue</div>
+        <div class="proj-problem"><em>Problem</em>Disproportionate shift scheduling causing fatigue peaks among gas station operators — high physical and mental strain.</div>
+        <div class="proj-desc">Combined qualitative transcript analysis (thematic coding) with Analytic Network Process (ANP) and Goal Programming algorithms to identify ergonomic blind spots and formulate a mathematically-balanced shift rotation.</div>
+        <div class="proj-metrics-row">
+          <div class="pm"><span class="pm-val">Score 5 vs 1</span><span class="pm-label">Day vs Morning Fatigue</span></div>
+          <div class="pm"><span class="pm-val">20–30 min</span><span class="pm-label">Handoff Window</span></div>
+          <div class="pm"><span class="pm-val">45 min</span><span class="pm-label">Pre-shift Standard</span></div>
+        </div>
+        <div class="proj-tags"><span class="ptag">ANP</span><span class="ptag">Goal Programming</span><span class="ptag">Ergonomics</span><span class="ptag">Qualitative Research</span><span class="ptag">Shift Scheduling</span></div>
+      </div>
+
+      <div class="proj-card" data-c="energy">
+        <div class="proj-card-top"><span class="proj-idx">08 / Energy Policy</span><span class="proj-badge badge-award">🏆 Best Presentation · SRE UGM</span></div>
+        <div class="proj-title">WIJAYA — Waste-to-Energy Circular Economy for DIY</div>
+        <div class="proj-problem"><em>Problem</em>DIY burns 1.2 tons of plastic/day; plastic waste projected to reach 23–27 million tons nationally by 2040 with near-total fossil energy dependency.</div>
+        <div class="proj-desc">Formulated holistic waste-to-energy strategy using SCQA, STEEP, and ESG frameworks. Proposed Anaerobic Digestion + Pyrolysis within a Pentahelix governance model — transforming a municipal cost center into integrated renewable energy.</div>
+        <div class="proj-metrics-row">
+          <div class="pm"><span class="pm-val">70%</span><span class="pm-label">Pyrolysis Efficiency</span></div>
+          <div class="pm"><span class="pm-val">+25%</span><span class="pm-label">Local Income Uplift</span></div>
+          <div class="pm"><span class="pm-val">Pentahelix</span><span class="pm-label">Governance Model</span></div>
+        </div>
+        <div class="proj-tags"><span class="ptag">SCQA</span><span class="ptag">ESG</span><span class="ptag">Pyrolysis</span><span class="ptag">Anaerobic Digestion</span><span class="ptag">Circular Economy</span><span class="ptag">Net Zero</span></div>
+      </div>
+
+      <div class="proj-card" data-c="energy">
+        <div class="proj-card-top"><span class="proj-idx">09 / Energy Policy</span><span class="proj-badge badge-award">🏆 1st Place · 92 Teams · EGSA UGM</span></div>
+        <div class="proj-title">MERAPI — Renewable Energy Policy Roadmap for DIY Province</div>
+        <div class="proj-problem"><em>Problem</em>Slow renewable transition in a province with high solar/wind potential but inadequate infrastructure investment and policy execution.</div>
+        <div class="proj-desc">Developed a comprehensive regional energy blueprint based on RUED 2020–2050. Mapped solar irradiance density, coastal wind capacity, R&amp;D investment roadmaps, and governance incentives targeting net zero fossil dependency.</div>
+        <div class="proj-metrics-row">
+          <div class="pm"><span class="pm-val">500 MW</span><span class="pm-label">EBT by 2038</span></div>
+          <div class="pm"><span class="pm-val">4.5 kWh/m²</span><span class="pm-label">Peak Solar Density</span></div>
+          <div class="pm"><span class="pm-val">–50% TPA</span><span class="pm-label">Waste by 2030</span></div>
+        </div>
+        <div class="proj-tags"><span class="ptag">RUED 2020–2050</span><span class="ptag">Solar/Wind Mapping</span><span class="ptag">Policy Roadmap</span><span class="ptag">Net Zero 2050</span><span class="ptag">R&amp;D Investment</span></div>
+      </div>
+
+      <div class="proj-card" data-c="cyber">
+        <div class="proj-card-top"><span class="proj-idx">10 / AI &amp; Cybersecurity</span><span class="proj-badge badge-award">🏆 1st Place · FIA UB 2024</span></div>
+        <div class="proj-title">SAFETO — AI-Powered 3-Stage Data Security Architecture</div>
+        <div class="proj-problem"><em>Problem</em>A single LockBit ransomware attack can demand Rp 295.6B in ransom; global data volume surging 47→163 ZB by 2025 makes traditional encryption insufficient.</div>
+        <div class="proj-desc">3-phase framework: Pre-Processing (ZTNA access control), On-going (EDR + AI anomaly detection), Post-Processing (Blockchain dummy-data isolation). Autonomously detects breaches before infiltration and serves AI-generated decoy data if compromised.</div>
+        <div class="proj-metrics-row">
+          <div class="pm"><span class="pm-val">3-Phase</span><span class="pm-label">Pre/On/Post</span></div>
+          <div class="pm"><span class="pm-val">ZTNA+EDR</span><span class="pm-label">Zero Trust</span></div>
+          <div class="pm"><span class="pm-val">Blockchain</span><span class="pm-label">Tamper-Proof</span></div>
+        </div>
+        <div class="proj-tags"><span class="ptag">ZTNA</span><span class="ptag">EDR</span><span class="ptag">Blockchain</span><span class="ptag">AI Security</span><span class="ptag">Ransomware Defense</span></div>
+      </div>
+
+      <div class="proj-card" data-c="ops">
+        <div class="proj-card-top"><span class="proj-idx">11 / Systems Design</span><span class="proj-badge badge-award">🏆 3rd Place · National LKTI SIAGA 2025</span></div>
+        <div class="proj-title">SIAGALIMA — AI-Driven Geospatial Disaster Management System</div>
+        <div class="proj-problem"><em>Problem</em>Indonesia's disaster mitigation budget at only 0.15% of state expenditure (Rp 4.9–5.4T), facing a projected 75.57% cut in 2025–2026 — while 22,000+ disasters occurred in the last five years. Fragmented governance and non-interoperable systems hamper emergency response accuracy and speed.</div>
+        <div class="proj-desc">Research paper proposing SIAGALIMA — a Disaster ERP Ecosystem designed using Fishbone Analysis (6 root cause dimensions), Community-Based Disaster Risk Management (CBDRM), and Multi-Level Governance (MLG) grounded in the Sendai Framework. Proposes GIS + AI-Driven Orchestration Engine with Closed Feedback Loop, Augmented Volunteer Intelligence (AVI), and Citizen Digital Twin for real-time personal risk profiling. Transforms reactive disaster management into a preventive, adaptive paradigm. Rangga as team member; paper written under UII Industrial Engineering.</div>
+        <div class="proj-metrics-row">
+          <div class="pm"><span class="pm-val">75.57%</span><span class="pm-label">Projected Budget Cut (2025–26)</span></div>
+          <div class="pm"><span class="pm-val">Sendai + MLG</span><span class="pm-label">Governance Framework</span></div>
+          <div class="pm"><span class="pm-val">CBDRM</span><span class="pm-label">Community-Based Approach</span></div>
+        </div>
+        <div class="proj-tags"><span class="ptag">Fishbone Analysis</span><span class="ptag">MLG</span><span class="ptag">CBDRM</span><span class="ptag">Sendai Framework</span><span class="ptag">GIS Policy Design</span><span class="ptag">Disaster Governance</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ ACHIEVEMENTS ══════════════════════════════ -->
+<section id="achievements">
+  <div class="container">
+    <div class="s-label"><span class="s-num">06 —</span> Recognition</div>
+    <h2 class="s-title reveal">Awards &amp; <em>Achievements</em></h2>
+    <div class="ach-layout reveal">
+
+      <div class="ach-item rank-1">
+        <div class="ach-rank">1st Place</div>
+        <div class="ach-title">EGSA Essay Competition 2024</div>
+        <div class="ach-desc">Led team to 1st place among <strong>92 national teams</strong>. MERAPI renewable energy policy roadmap for DIY Province targeting 500 MW EBT capacity by 2038.</div>
+        <div class="ach-meta">2024 · Faculty of Geography, Universitas Gadjah Mada</div>
+      </div>
+
+      <div class="ach-item rank-1">
+        <div class="ach-rank">1st Place</div>
+        <div class="ach-title">Opinion Competition — Administratio Creative Writing, FIA UB 2024</div>
+        <div class="ach-desc">SAFETO — AI-powered 3-stage data security architecture (ZTNA + EDR + Blockchain). Recognized for analytical depth and persuasive writing precision.</div>
+        <div class="ach-meta">2024 · Faculty of Administrative Sciences, Universitas Brawijaya</div>
+      </div>
+
+      <div class="ach-item rank-best">
+        <div class="ach-rank">Best Presentation</div>
+        <div class="ach-title">Policy Case Competition — SRE UGM × New Energy Nexus Indonesia</div>
+        <div class="ach-desc">WIJAYA Waste-to-Energy initiative. Awarded for structured argumentation, data-driven policy reasoning, and highly engaging delivery on Pyrolysis + Pentahelix governance.</div>
+        <div class="ach-meta">2024 · Society of Renewable Energy, UGM</div>
+      </div>
+
+      <div class="ach-item rank-best">
+        <div class="ach-rank">Best Presentation</div>
+        <div class="ach-title">Rekayasa Sistem Kerja dan Ergonomi Big Project</div>
+        <div class="ach-desc">E-Textiles Smart Shirt ergonomics project. Recognized for technical precision and clear communication of REBA/CVL validation methodology.</div>
+        <div class="ach-meta">2024 · Laboratory of Work System Design, IE UII</div>
+      </div>
+
+      <div class="ach-item rank-3">
+        <div class="ach-rank">3rd Place — National</div>
+        <div class="ach-title">LKTI SIAGA Awards Competition — National Level</div>
+        <div class="ach-desc">Paper: <em>"AI-Driven Geospatial DSS untuk Community-Based Disaster Risk Management: Integrasi Teknologi, Tata Kelola, dan Kapasitas Lokal di Indonesia"</em> — SIAGALIMA system integrating GIS + AI Orchestration Engine, CBDRM, and Multi-Level Governance for preventive disaster management.</div>
+        <div class="ach-meta">2025 · SPMKB/UIIPeduli × Matta Bencana Indonesia</div>
+      </div>
+
+      <div class="ach-item rank-3">
+        <div class="ach-rank">2nd Favorite Award</div>
+        <div class="ach-title">Integrated Industrial System Design Capstone Project — FIT UII</div>
+        <div class="ach-desc">ESION automated waste sorting machine for Desa Pagerjurang-Magersari. Project Manager role. AHP + QFD + TRIZ methodology. BCR 1.128 (PV Benefit Rp 79.2M vs. Cost Rp 70.2M). Compost capacity 864 kg/yr. Usability: Expert 75%, Intermediate 66%, Public 58%.</div>
+        <div class="ach-meta">2025 · Industrial Engineering Department, FIT UII</div>
+      </div>
+
+      <div class="ach-item rank-fin">
+        <div class="ach-rank">Finalist</div>
+        <div class="ach-title">Prototype Contest — SANDBOX IEEE ITB Student Branch</div>
+        <div class="ach-desc">SleepSense IoT diagnostic (CNN-LSTM, 94% accuracy, AUC 0.99) and E-Textiles Smart Shirt. Multidisciplinary healthtech team — personal health monitoring and care efficiency.</div>
+        <div class="ach-meta">2025 · Institut Teknologi Bandung</div>
+      </div>
+
+      <div class="ach-item rank-fin">
+        <div class="ach-rank">2nd Runner-Up</div>
+        <div class="ach-title">IW UGM — Energy System Integration Competition</div>
+        <div class="ach-desc">Developed innovative energy system integration solutions under competitive conditions, demonstrating analytical problem-solving in a highly competitive engineering forum.</div>
+        <div class="ach-meta">2023 · Department of Industrial Engineering, UGM</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ CERTIFICATIONS ══════════════════════════════ -->
+<section id="certs">
+  <div class="container">
+    <div class="s-label"><span class="s-num">07 —</span> Certifications</div>
+    <h2 class="s-title reveal">Professional <em>Credentials</em></h2>
+    <div class="certs-layout reveal">
+
+      <div class="cert-card">
+        <div class="cert-icon">⊕</div>
+        <div class="cert-name">Health and Safety Officer (HSO)</div>
+        <div class="cert-issuer">BNSP — Badan Nasional Sertifikasi Profesi</div>
+        <div class="cert-desc">National professional certification in occupational health &amp; safety — directly applicable to HSSE compliance requirements in industrial and oil &amp; gas environments. Complements procurement experience at PT Saka Energi Indonesia within SKK Migas HSSE standards.</div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon">◈</div>
+        <div class="cert-name">Introduction to SAP S/4HANA with Global Bike Inc.</div>
+        <div class="cert-issuer">SAP Learning — Official Certification</div>
+        <div class="cert-desc">Official SAP certification validating foundational proficiency in S/4HANA core navigation, Material Management (MM) procurement cycle, and cross-module integration using the Global Bike Inc. simulation — the same environment used daily in the SAP ERP Laboratory.</div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon">◎</div>
+        <div class="cert-name">Certificate of English Proficiency Test</div>
+        <div class="cert-issuer">UII Language Center — CEPT</div>
+        <div class="cert-score">491</div>
+        <div class="cert-score-label">Score · Professional Working Proficiency</div>
+        <div class="cert-desc">Applied consistently across international-standard competition presentations, research report writing, and cross-institutional stakeholder communications.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ CONTACT ══════════════════════════════ -->
+<section id="contact">
+  <div class="container">
+    <div class="s-label"><span class="s-num">08 —</span> Contact</div>
+    <div class="contact-layout reveal">
+      <div>
+        <div class="contact-statement">The right candidate is not the one who fits the job description. It is the one who <em>elevates it.</em></div>
+        <p class="contact-body">I have built systems from scratch, mentored hundreds, won national competitions, and navigated the procurement floors of an upstream oil &amp; gas company — all before graduation. If you need someone who is analytical, adaptable, and ready to lead: let's talk.</p>
+        <div class="cta-group">
+          <a href="mailto:22522284@students.uii.ac.id" class="btn-prim">Send Email</a>
+          <a href="tel:+62088232696886" class="btn-ghost">Call / WhatsApp</a>
+        </div>
+      </div>
+      <div class="contact-info">
+        <div class="contact-row">
+          <span class="ci-label">Email</span>
+          <span class="ci-val">22522284@students.uii.ac.id</span>
+        </div>
+        <div class="contact-row">
+          <span class="ci-label">Phone</span>
+          <span class="ci-val">0882-3269-6886</span>
+        </div>
+        <div class="contact-row">
+          <span class="ci-label">Location</span>
+          <span class="ci-val">Sleman, Yogyakarta — Indonesia</span>
+        </div>
+        <div class="contact-row">
+          <span class="ci-label">Status</span>
+          <div class="ci-status"><div class="ci-dot"></div><span class="ci-val">Available for Opportunities</span></div>
+        </div>
+        <div class="contact-row">
+          <span class="ci-label">Institution</span>
+          <span class="ci-val">Universitas Islam Indonesia</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">© 2025 Rangga Pamungkas Putradharma · Industrial Engineering UII</div>
+  <div class="footer-right" style="font-family:var(--mono);font-size:10px;color:var(--text-muted);letter-spacing:0.1em">Built with precision &middot; Designed to persuade</div>
+</footer>
+
+<script>
+// Custom cursor
+const dot = document.getElementById('dot');
+const ring = document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+function animateRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animateRing)}
+animateRing();
+document.querySelectorAll('a,button,.proj-card,.ach-item,.cert-card,.about-card,.stat-block').forEach(el=>{
+  el.addEventListener('mouseenter',()=>ring.classList.add('hover'));
+  el.addEventListener('mouseleave',()=>ring.classList.remove('hover'));
+});
+
+// Reveal on scroll
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible')}});
+},{threshold:0.08});
+document.querySelectorAll('.reveal,.reveal-left').forEach(el=>obs.observe(el));
+
+// Skills tabs
+document.querySelectorAll('.skill-tab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.skill-tab').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.skill-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-'+btn.dataset.panel).classList.add('active');
+  });
+});
+
+// Project filter
+document.querySelectorAll('.pf-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.pf-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f=btn.dataset.f;
+    document.querySelectorAll('.proj-card').forEach(card=>{
+      if(f==='all'||card.dataset.c===f){card.classList.remove('hidden')}
+      else{card.classList.add('hidden')}
+    });
+  });
+});
+
+// Staggered card reveals
+document.querySelectorAll('.proj-card,.ach-item,.cert-card').forEach((el,i)=>{
+  el.style.transitionDelay=(i%4)*0.07+'s';
+});
+</script>
+</body>
+</html>
